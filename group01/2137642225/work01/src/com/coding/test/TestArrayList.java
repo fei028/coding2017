@@ -23,7 +23,7 @@ public class TestArrayList {
 		list.add("ele");
 		System.out.println(list.get(0));
 		Assert.assertEquals("ele", list.get(0));
-s	}
+	}
 
 	@Test
 	public void testAddIntObject() {

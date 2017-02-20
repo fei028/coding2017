@@ -10,9 +10,9 @@ public class ArrayList implements List{
 		elementData = new Object[DEF_CAPACITY];
 	}
 	
-	public ArrayList(int initCapacity) throws Exception{
+	public ArrayList(int initCapacity) {
 		if(initCapacity <= 0){
-			throw new Exception("初始化长度必须大于0");
+			throw new RuntimeException("初始化长度必须大于0");
 		}
 		elementData = new Object[initCapacity];
 	}
@@ -29,35 +29,32 @@ public class ArrayList implements List{
 		// index 在 0到size 之间,index之后元素要后移
 		checkIndex(index);
 		checkArrayOutOfRange();
-		
+		moveBackwardElement(index);
+		elementData[index] = element;
+		size++;
 	}
 
-	/**
-	 * 检查数组容量是否已满，已满则扩容
-	 */
-	private void checkArrayOutOfRange() {
-		if(size >= elementData.length){
-			// 扩容 默认新容量是原来容量的2倍
-			grow(elementData.length * 2);
-		}
-	}
 
 	@Override
 	public Object get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(index);
+		return elementData[index];
 	}
 
 	@Override
 	public Object remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		checkIndex(index);
+		Object temp = elementData[index];
+		moveForwardElement(index);
+		elementData[size--] = null;
+		return temp;
 	}
+	
+	
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size;
 	}
 	
 	/**
@@ -84,4 +81,34 @@ public class ArrayList implements List{
 			throw new RuntimeException("index 必须小于等于size:" + size);
 		}
 	}
+	
+	/**
+	 * 检查数组容量是否已满，已满则扩容
+	 */
+	private void checkArrayOutOfRange() {
+		if(size >= elementData.length){
+			// 扩容 默认新容量是原来容量的2倍
+			grow(elementData.length * 2);
+		}
+	}
+	
+	/**
+	 * 后移元素，从index开始
+	 * @param index
+	 */
+	private void moveBackwardElement(int index) {
+		for (int i = index; i < size; i++) {
+			elementData[i] = elementData[i + 1];
+		}
+	}
+	/**
+	 * 前移元素,从index开始
+	 * @param index
+	 */
+	private void moveForwardElement(int index) {
+		for (int i = index; i < size; i++) {
+			elementData[i] = elementData[i + 1];
+		}
+	}
+
 }

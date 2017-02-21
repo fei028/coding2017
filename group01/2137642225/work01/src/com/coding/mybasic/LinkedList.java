@@ -6,55 +6,92 @@ public class LinkedList implements List {
 	private Node last;
 	private int size;
 	
+	public LinkedList() {
+	}
 	
 	@Override
 	public void add(Object element) {
 		if(head == null){
-			head = new Node();
-			head.data = element;
-			head.next = null;
-			last = head;
+			addHead(element);
+		}else{
+			addLast(element);
+		}
+	}
+	
+	@Override
+	public void add(int index, Object element) {
+		if(index == size){
+			add(element);
 			return;
 		}
+		
+		if(index == 0){
+			addFirst(element);
+			return;
+		}
+		checkIndex(index);
+		insertElement(index - 1,element);
+	}
+	
+	
+	@Override
+	public Object get(int index) {
+		checkIndex(index);
+		Node node = getNodeByIndex(index);
+		return node != null ? node.data : null;
+	}
+
+	@Override
+	public Object remove(int index) {
+		
+		checkIndex(index);
+		Object element = null;
+		if(index == 0){
+			element = removeFirst();
+		}
+		else if(index == size - 1){
+			element = removeLast();
+		}
+		else {
+			element = removeMiddle(index);
+		}
+		size--;
+		return element;
+	}
+	
+	
+	@Override
+	public int size() {
+		return size;
+	}
+	
+	public void addFirst(Object o){
 		Node node = new Node();
-		node.data =element;
+		node.data = o;
+		node.next = head.next;
+		head = node;
+	}
+	public void addLast(Object o){
+		Node node = new Node();
+		node.data = o;
 		node.next = null;
 		last.next = node;
 		last = node;
 		size++;
 	}
-	@Override
-	public void add(int index, Object element) {
-		
-		
-	}
-	@Override
-	public Object get(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Object remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	public void addFirst(Object o){
-		
-	}
-	public void addLast(Object o){
-		
-	}
 	public Object removeFirst(){
-		return null;
+		return removeFirstNode();
 	}
 	public Object removeLast(){
-		return null;
+		return removeLastNode();
+	}
+	private Object removeMiddle(int index) {
+		Node temp = getNodeByIndex(index - 1);
+		Node removeNode = temp.next;
+		Object element = removeNode.data;
+		temp.next = removeNode.next;
+		removeNode = null;
+		return element;
 	}
 //	public Iterator iterator(){
 //		return null;
@@ -74,19 +111,76 @@ public class LinkedList implements List {
 		}
 	}
 	
+	/**
+	 * 添加head
+	 * @param element
+	 */
+	private void addHead(Object element) {
+		head = new Node();
+		head.data = element;
+		head.next = null;
+		last = head;
+		size++;
+	}
+	/**
+	 * 插入序号在0-size之间的元素,不包含0和size位置 
+	 * @param index
+	 * @param element
+	 */
+	private void insertElement(int index, Object element) {
+		
+		Node temp = getNodeByIndex(index);
+		if(temp != null){
+			Node node = new Node();
+			node.data = element;
+			node.next = temp.next;
+			temp.next = node;
+		}
+		size++;
+	}
+	/**
+	 * 获取下标为index的元素
+	 * @param index
+	 * @return
+	 */
+	private Node getNodeByIndex(int index) {
+		Node temp = head;
+		int i = 0;
+		
+		while(i < size){
+			if(i == index){
+				return temp;
+			}
+			temp = temp.next;
+			i++;
+		}
+		
+		return null;
+	}
+	/**
+	 * 移除最后一个元素
+	 * @return
+	 */
+	private Object removeLastNode() {
+		Node temp = getNodeByIndex(size - 1);
+		last = temp;
+		Node removeNode = temp.next;
+		temp.next = null;
+		return removeNode;
+	}
+	/**
+	 * 移除第一个元素
+	 * @return
+	 */
+	private Object removeFirstNode() {
+		Node removeNode = head.next;
+		Object element = head.data;
+		head = null;
+		head = removeNode;
+		return element;
+	}
 	
-	/**
-	 * 后移元素，从index开始
-	 * @param index
-	 */
-	private void moveBackwardElement(int index) {
-	}
-	/**
-	 * 前移元素,从index开始
-	 * @param index
-	 */
-	private void moveForwardElement(int index) {
-	}
+	
 	
 	private static class Node{
 		Object data;

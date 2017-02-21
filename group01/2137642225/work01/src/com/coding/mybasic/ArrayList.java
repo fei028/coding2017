@@ -26,6 +26,11 @@ public class ArrayList implements List{
 
 	@Override
 	public void add(int index, Object element) {
+		// 末尾插入
+		if(index == size){
+			add(element);
+			return;
+		}
 		// index 在 0到size 之间,index之后元素要后移
 		checkIndex(index);
 		checkArrayOutOfRange();
@@ -68,7 +73,7 @@ public class ArrayList implements List{
 	}
 	
 	/**
-	 * 检插入值位置的序号
+	 * 检查index index >=0 且  < size
 	 * @param index 
 	 * @throws Exception
 	 */
@@ -77,8 +82,8 @@ public class ArrayList implements List{
 			throw new RuntimeException("index 必须大于0");
 		}
 		// 越界
-		if(index > size){
-			throw new RuntimeException("index 必须小于等于size:" + size);
+		if(index >= size){
+			throw new RuntimeException("index 必须小于size:" + size);
 		}
 	}
 	

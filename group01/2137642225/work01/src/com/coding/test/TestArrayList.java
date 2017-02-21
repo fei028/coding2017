@@ -22,34 +22,43 @@ public class TestArrayList {
 	public void testAddObject() {
 		list.add("ele");
 		Assert.assertEquals("ele", list.get(0));
-		Assert.assertEquals(1, list.size());
 	}
 
 	@Test
 	public void testAddIntObject() {
-		list.add("we");
-		list.add(1, "gga");
-		list.add(0, "start");
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
+		
+		for (int i = 0; i < 5; i++) {
+			list.add(i,i);
+			Assert.assertEquals(i, list.get(i));
 		}
-		System.out.println(list.size());
 		
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		list.add("ss");
+		Assert.assertEquals("ss", list.get(0));
 	}
 
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
+		list.add("we");
+		list.add(1, "gga");
+		list.add(0, "start");
+		list.add(3, "end");
+		
+		Assert.assertEquals("end", list.remove(3));
+		
 	}
 
 	@Test
 	public void testSize() {
-		fail("Not yet implemented");
+		
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		
+		Assert.assertEquals(10, list.size());
 	}
 
 	@After

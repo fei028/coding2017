@@ -21,13 +21,20 @@ public class TestArrayList {
 	@Test
 	public void testAddObject() {
 		list.add("ele");
-		System.out.println(list.get(0));
 		Assert.assertEquals("ele", list.get(0));
+		Assert.assertEquals(1, list.size());
 	}
 
 	@Test
 	public void testAddIntObject() {
-		fail("Not yet implemented");
+		list.add("we");
+		list.add(1, "gga");
+		list.add(0, "start");
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+		System.out.println(list.size());
+		
 	}
 
 	@Test

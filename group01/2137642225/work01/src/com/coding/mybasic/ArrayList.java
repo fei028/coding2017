@@ -97,8 +97,8 @@ public class ArrayList implements List{
 	 * @param index
 	 */
 	private void moveBackwardElement(int index) {
-		for (int i = index; i < size; i++) {
-			elementData[i] = elementData[i + 1];
+		for (int i = size; i > index; i--) {
+			elementData[i] = elementData[i - 1];
 		}
 	}
 	/**

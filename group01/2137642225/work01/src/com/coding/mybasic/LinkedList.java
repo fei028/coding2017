@@ -70,7 +70,6 @@ public class LinkedList implements List {
 		return new LinkedListIterator();
 	}
 	
-	@SuppressWarnings("unused")
 	private class LinkedListIterator implements Iterator{
 		private Node node = head;
 		int i = 0;

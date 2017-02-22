@@ -62,13 +62,33 @@ public class ArrayList implements List{
 		return size;
 	}
 	
+	@Override
+	public Iterator iterator() {
+		return new ArrayListIterator();
+	}
+	
+	private class ArrayListIterator implements Iterator{
+		private int i = 0;
+		@Override
+		public boolean hasNext() {
+			return i < size;
+		}
+
+		@Override
+		public Object next() {
+			checkIndex(i);
+			return elementData[i++];
+		}
+		
+	}
+	
 	/**
 	 * 数组增长
 	 * @param newCapacity 新数组容量
 	 */ 
 	private void grow(int newCapacity) {
 		Object[] dest = new Object[newCapacity];
-		System.arraycopy(elementData, 0, dest , 0, newCapacity);
+		System.arraycopy(elementData, 0, dest , 0, elementData.length);
 		elementData = dest;
 	}
 	

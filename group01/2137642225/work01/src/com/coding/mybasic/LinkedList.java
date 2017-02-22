@@ -65,6 +65,30 @@ public class LinkedList implements List {
 		return size;
 	}
 	
+	@Override
+	public Iterator iterator() {
+		return new LinkedListIterator();
+	}
+	
+	@SuppressWarnings("unused")
+	private class LinkedListIterator implements Iterator{
+		private Node node = head;
+		int i = 0;
+		@Override
+		public boolean hasNext() {
+			return i < size;
+		}
+
+		@Override
+		public Object next() {
+			checkIndex(i);
+			Object element = node.data;
+			node = node.next;
+			i++;
+			return element;
+		}
+		
+	}
 	public void addFirst(Object o){
 		Node node = new Node();
 		node.data = o;

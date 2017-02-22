@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.coding.mybasic.Iterator;
 import com.coding.mybasic.LinkedList;
 import com.coding.mybasic.List;
 
@@ -52,7 +53,26 @@ public class TestLinkedList {
 
 	@Test
 	public void testSize() {
-		fail("Not yet implemented");
+		
+		for(int i = 0; i < 10; i++){
+			list.add(i, i);
+		}
+		
+		assertEquals(10, list.size());
+	}
+	
+	@Test
+	public void testIterator() {
+		
+		for(int i = 0; i < 10; i++){
+			list.add(i, i);
+		}
+		Iterator iterator = list.iterator();
+		int i = 0;
+		while(iterator.hasNext()){
+			assertEquals(i++, iterator.next());
+		}
+		//iterator.next();
 	}
 
 }

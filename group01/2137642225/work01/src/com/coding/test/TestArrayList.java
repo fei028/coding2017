@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.coding.mybasic.ArrayList;
+import com.coding.mybasic.Iterator;
 import com.coding.mybasic.List;
 
 public class TestArrayList {
@@ -58,6 +59,19 @@ public class TestArrayList {
 		}
 		
 		Assert.assertEquals(10, list.size());
+	}
+	
+	@Test
+	public void testIterator() {
+		
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		Iterator iterator = list.iterator();
+		int i = 0;
+		while(iterator.hasNext()){
+			Assert.assertEquals(i++, iterator.next());
+		}
 	}
 
 	@After

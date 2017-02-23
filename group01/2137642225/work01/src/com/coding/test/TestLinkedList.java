@@ -74,5 +74,4 @@ public class TestLinkedList {
 		}
 		//iterator.next();
 	}
-
 }

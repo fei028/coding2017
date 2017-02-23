@@ -65,6 +65,7 @@ public class LinkedList implements List {
 		return size;
 	}
 	
+
 	@Override
 	public Iterator iterator() {
 		return new LinkedListIterator();
@@ -88,6 +89,7 @@ public class LinkedList implements List {
 		}
 		
 	}
+
 	public void addFirst(Object o){
 		Node node = new Node();
 		node.data = o;
@@ -116,9 +118,7 @@ public class LinkedList implements List {
 		removeNode = null;
 		return element;
 	}
-//	public Iterator iterator(){
-//		return null;
-//	}
+
 	/**
 	 * 检查index index >=0 且  < size
 	 * @param index 

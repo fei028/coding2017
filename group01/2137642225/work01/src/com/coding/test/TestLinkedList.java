@@ -43,11 +43,7 @@ public class TestLinkedList {
 	@Test
 	public void testRemove() {
 		list.add(0,1);
-		System.out.println(list.get(0));
-		assertEquals(1, list.get(0));
-		assertEquals(1, list.size());
-		list.remove(0);
-		System.out.println(list.get(0));
+		System.out.println(list.remove(0));
 		assertEquals(0, list.size());
 	}
 

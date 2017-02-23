@@ -49,7 +49,7 @@ public class LinkedList implements List {
 		if(index == 0){
 			element = removeFirst();
 		}
-		else if(index == size - 1){
+		else if(index == (size - 1)){
 			element = removeLast();
 		}
 		else {
@@ -185,21 +185,22 @@ public class LinkedList implements List {
 	 * @return
 	 */
 	private Object removeLastNode() {
-		Node temp = getNodeByIndex(size - 1);
-		last = temp;
-		Node removeNode = temp.next;
-		temp.next = null;
-		return removeNode;
+		Node node = getNodeByIndex(size - 2);
+		Node lastNode = node.next;
+		Object element = lastNode.data;
+		lastNode = null;
+		last = node;
+		return element;
 	}
 	/**
 	 * 移除第一个元素
 	 * @return
 	 */
 	private Object removeFirstNode() {
-		Node removeNode = head.next;
+		Node node = head.next;
 		Object element = head.data;
 		head = null;
-		head = removeNode;
+		head = node;
 		return element;
 	}
 	

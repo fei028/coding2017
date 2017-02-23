@@ -1,19 +1,30 @@
 package com.coding.mybasic;
 
 public class Queue {
-	
+	private LinkedList linkedList = new LinkedList();
 	public void enQueue(Object o){		
+		linkedList.add(o);
 	}
 	
 	public Object deQueue(){
-		return null;
+		checkEmptyQueue();
+		return linkedList.remove(size() - 1);
 	}
 	
 	public boolean isEmpty(){
-		return false;
+		return size() <= 0;
 	}
 	
 	public int size(){
-		return -1;
+		return linkedList.size();
+	}
+	
+	/**
+	 * 检查队列是否为空
+	 */
+	private void checkEmptyQueue() {
+		if(isEmpty()){
+			throw new RuntimeException("size:" + size() + " 空队列");
+		}
 	}
 }

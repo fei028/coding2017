@@ -3,20 +3,33 @@ package com.coding.mybasic;
 public class Stack {
 	private ArrayList elementData = new ArrayList();
 	
-	public void push(Object o){		
+	public void push(Object o){
+		elementData.add(o);
 	}
 	
 	public Object pop(){
-		return null;
+		checkEmptyStack();
+		return elementData.remove(size() - 1);
 	}
 	
 	public Object peek(){
-		return null;
+		checkEmptyStack();
+		Object element = elementData.get(size() - 1);
+		return element;
 	}
+
 	public boolean isEmpty(){
-		return false;
+		return size() <= 0;
 	}
 	public int size(){
-		return -1;
+		return elementData.size();
+	}
+	/**
+	 * 检查栈是否为空
+	 */
+	private void checkEmptyStack() {
+		if(isEmpty()){
+			throw new RuntimeException("size:" + size() + " 空栈");
+		}
 	}
 }

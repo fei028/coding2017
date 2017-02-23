@@ -26,7 +26,27 @@ public class BinaryTreeNode {
 	}
 	
 	public BinaryTreeNode insert(Object o){
-		return  null;
+		search(this,o);
+		BinaryTreeNode binaryTreeNode = new BinaryTreeNode();
+		binaryTreeNode.setData(o);
+		return null ;
+	}
+	private boolean isExistData(Object data) {
+		return search(this,data) != null;
+		
+	}
+	
+	private BinaryTreeNode search(BinaryTreeNode binaryTreeNode, Object data) {
+		if(binaryTreeNode == null){
+			return null;
+		}
+		Object curNodeData = binaryTreeNode.data;
+		if(curNodeData != null){// 左 curNodeData < data
+			search(binaryTreeNode.left,data);
+		}else if(curNodeData == null){
+			search(binaryTreeNode.right,data);
+		}
+		return binaryTreeNode;
 	}
 	
 }
